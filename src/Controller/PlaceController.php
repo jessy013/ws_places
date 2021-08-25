@@ -21,7 +21,18 @@ class PlaceController extends AbstractController
  ]);
  return $reponse;
 }
-
+/**
+* @Route("/api/place/{id}", name="api_place_avec_id")
+*/
+public function findById(PlaceRepository $placeRepository): Response
+{
+$place = $placeRepository->find($id);
+$json = json_encode($place);
+$reponse = new Response($json, 200, [
+'content-type' => 'application/json'
+]);
+return $reponse;
+}
         
     
     
