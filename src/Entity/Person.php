@@ -6,6 +6,7 @@ use App\Repository\PersonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PersonRepository::class)
@@ -20,17 +21,22 @@ class Person
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity=place::class, inversedBy="likedBy")
+     * @ORM\ManyToMany(targetEntity=Place::class, inversedBy="likedBy")
+     * @Groups("person:read")
      */
     private $placesLiked;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("person:read")
+     * @Groups("place:read")
      */
     private $Name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("person:read")
+     * @Groups("place:read")
      */
     private $FirstName;
 

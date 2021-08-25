@@ -41,7 +41,7 @@ class PlaceController extends AbstractController
     ,NormalizerInterface $normalizer): Response
     {
     $places = $placeRepository->findAll();
-    $normalized = $normalizer->normalize($places);
+    $normalized = $normalizer->normalize($places,null,['groups'=>'place:read']);
     $json = json_encode($normalized);
     $reponse = new Response($json, 200, [
     'content-type' => 'application/json'
