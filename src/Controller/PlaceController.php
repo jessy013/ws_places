@@ -48,6 +48,5 @@ class PlaceController extends AbstractController
     ]);
     return $reponse;
 }  
-    
-    
+  
 }
