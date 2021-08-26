@@ -34,4 +34,16 @@ class PersonController extends AbstractController
     ]);
     return $reponse;
     }
+    /**
+    * @Route("/api/person/", name="api_person_add",methods="POST")
+    */
+    public function add(EntityManagerInterface $entityManager, Request $request,
+    SerializerInterface $serializer, ValidatorInterface $validator) {
+    $contenu = $request->getContent();
+    $personne = $serializer->deserialize($contenu, Person::class, 'json');
+    $entityManager->persist($personne);
+    $entityManager->flush();
+    return $this->json($personne, 201, [],
+    ['groups' => 'person:read']);
+    }
 }
