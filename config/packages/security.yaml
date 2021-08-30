@@ -1,14 +1,14 @@
 security:
     encoders:
         App\Entity\User:
-        algorithm: bcrypt
+            algorithm: bcrypt
 # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
-providers:
+    providers:
   # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
                 class: App\Entity\User
-            property: username
+                property: username
 
 
     firewalls:
@@ -25,22 +25,22 @@ providers:
            stateless: true
            provider: app_user_provider
            guard:
-           authenticators:
-           - lexik_jwt_authentication.jwt_token_authenticator
+            authenticators:
+                - lexik_jwt_authentication.jwt_token_authenticator
         dev:
           pattern: ^/(_(profiler|wdt)|css|images|js)/
           security: false
-          main:
+        main:
           anonymous: true
             # activate different ways to authenticate
 
-# https://symfony.com/doc/current/security.html#firewalls-authentication
-# https://symfony.com/doc/current/security/impersonating_user.html
-# switch_user: true
+ # https://symfony.com/doc/current/security.html#firewalls-authentication
+ # https://symfony.com/doc/current/security/impersonating_user.html
+ # switch_user: true
 
-# Easy way to control access for large sections of your site
-# Note: Only the *first* access control that matches will be used
-access_control:
-- { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-- { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-- { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+ # Easy way to control access for large sections of your site
+ # Note: Only the *first* access control that matches will be used
+    access_control:
+      - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
