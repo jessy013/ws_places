@@ -12,7 +12,6 @@ security:
 
 
 firewalls:
-
   login:
   pattern: ^/api/login
   stateless: true
