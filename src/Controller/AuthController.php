@@ -6,8 +6,8 @@ use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderIdentifier;
-use Symfony\Component\Security\Core\User\UserIdentifier;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 class AuthController extends ApiController
 {/**
  *@Route("/register",name="api_register",methods="POST")
@@ -27,7 +27,7 @@ $user->setPassword($encoder->encodePassword($user, $password));
 $user->setUsername($username);
 $em->persist($user);
 $em->flush();
-return $this->respondWithSuccess(sprintf('User %s successfully created', $user->getUserIdentifier()));
+return $this->respondWithSuccess(sprintf('User %s successfully created', $user->getUserInterface()));
 }
 /**
  * @Route("/api/login_check",name="api_login_check",methods="POST")
